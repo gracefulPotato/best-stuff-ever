@@ -57,6 +57,9 @@ public class UIMS {
 			//postcondition: userID is in hash table userT associated with cid
 			//and customerID = cid + 1
 			static void add(String userID){
+				if(isAvailable(userID)==false){
+					return;
+				}
 				customerID++;
 			}
 			

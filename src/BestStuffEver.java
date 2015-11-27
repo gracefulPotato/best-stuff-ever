@@ -22,6 +22,7 @@ public class BestStuffEver {
 		}
 		in.close();
 		testList.debugPrint();
+		TestDrivers.generateRandomShit();
 	}
 
 	

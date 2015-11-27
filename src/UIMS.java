@@ -1,7 +1,7 @@
 import java.util.*;
 public class UIMS {
 	//the user id management system
-			int customerID = 0;
+			static int customerID = 0;
 			//increased by 1 each time a user id is added
 			//since the value of customerID is always equal to the number
 			//of user ids issued we will use it to compute the load factor
@@ -18,14 +18,46 @@ public class UIMS {
 			
 			//userID: proposed user id
 			//returns true if the userID is available, false otherwise
-			boolean isAvailable(String userID){
+			static boolean isAvailable(String userID){
+				//check if userID is valid String
+				assert(idIsValid(userID));
+				//check if userID already exists
 				return true;
+			}
+			
+			static boolean idIsValid(String userID){
+				for(int i=0; i<userID.length(); i++){
+					char uidChar = userID.charAt(i);
+					if(charIsAlphaNum(uidChar)==false){
+						return false;
+					}
+				}
+				return true;
+			}
+			
+			static boolean charIsAlphaNum(char chr){
+				if(chr<48){					//below '0'
+					return false; 
+				}
+				else if(chr>122){			//above 'z'
+					return false;
+				}
+				else if(chr>57 && chr<65){	//btwn '9' and 'Z'
+					return false;
+				}
+				else if(chr>90 && chr<97){	//btwn 'Z' and 'a'
+					return false;
+				}
+				else{						//0-9 or A-Z or a-z
+					return true;
+				}
 			}
 			
 			//precondition: userID is available and customerID = cid
 			//postcondition: userID is in hash table userT associated with cid
 			//and customerID = cid + 1
-			void add(String userID){
+			static void add(String userID){
+				customerID++;
 			}
 			
 			//returns the customer id associated with user id userID

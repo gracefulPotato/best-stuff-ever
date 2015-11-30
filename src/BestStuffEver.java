@@ -12,14 +12,17 @@ public class BestStuffEver {
 	
 	public static void main(String args[])throws IOException{
 		//Scanner in = new Scanner(new File(args[0]));
+
 		Scanner in = new Scanner(new File("data/test.txt"));
+		//Scanner in = new Scanner(new File("input/test.txt"));
 		Conversion converter = new Conversion();
 		
 		//for finding if string contains special character (stackOverflow.com)
 		Pattern regex = Pattern.compile("[^A-Za-z0-9]");
-	    Matcher match;
+	    	Matcher match;
 	    
 		int[] bitseq;
+		SLItemList testList = new SLItemList();
 		
 		while(in.hasNextLine()){
 			String UI = in.nextLine();
@@ -43,10 +46,19 @@ public class BestStuffEver {
 				}
 				System.out.println();
 			}
-			
-			
-		}
+		
+			if(UIMS.idIsValid(tmpID)==false){
+				System.out.println(tmpID+" is invalid "
+						+ "(contains non-alphanumeric characters).");
+				continue;
+			}
+			if(UIMS.isAvailable(tmpID)){
+				testList.pushFront(tmpID,1);
+				//UIMS.add(tmpID);
+			}
 		in.close();
+		testList.debugPrint();
+		TestDrivers.generateRandomShit();
 	}
 
 	

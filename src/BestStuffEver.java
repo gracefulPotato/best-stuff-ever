@@ -13,7 +13,7 @@ public class BestStuffEver {
 	public static void main(String args[])throws IOException{
 		//Scanner in = new Scanner(new File(args[0]));
 
-		Scanner in = new Scanner(new File("data/test.txt"));
+		Scanner in = new Scanner(new File("../data/test.txt"));
 		//Scanner in = new Scanner(new File("input/test.txt"));
 		Conversion converter = new Conversion();
 		
@@ -47,18 +47,29 @@ public class BestStuffEver {
 				System.out.println();
 			}
 		
-			if(UIMS.idIsValid(tmpID)==false){
-				System.out.println(tmpID+" is invalid "
+			if(UIMS.idIsValid(UI)==false){
+				System.out.println(UI+" is invalid "
 						+ "(contains non-alphanumeric characters).");
 				continue;
 			}
-			if(UIMS.isAvailable(tmpID)){
-				testList.pushFront(tmpID,1);
+			if(UIMS.isAvailable(UI)){
+				testList.pushFront(UI,1);
 				//UIMS.add(tmpID);
 			}
+		}
 		in.close();
 		testList.debugPrint();
 		TestDrivers.generateRandomShit();
+		int[]bits = {1,0,1,1,1,1,1,0,0};
+		//bits[0] = 0;
+		//bits[1] = 1;
+		//bits[
+		int[]ans = converter.bitseqToDigitSeq(bits,3);
+		for(int i=0; i<ans.length; i++){
+			System.out.println(bits[i*2]+" "+bits[i*2+1]);
+			//System.out.println(bits[i*2+1]);
+			System.out.println(ans[i]);
+		}
 	}
 
 	

@@ -1,20 +1,26 @@
-
+import java.util.*;
 public class Conversion {
 	//returns an array of 0s and 1s constructed by
 	//representing each char in s by its assigned
 	//bit pattern
 	public Conversion(){}
-	
+	int[] decimalArr;
 	int[] stringToBitseq(String s){
 		String characters = "0123456789abcdefghijklmnopqurstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		char[] charArray = s.toCharArray();
-		int[] arr = new int[charArray.length];
-		
+		decimalArr = new int[charArray.length];
+		int[] binaryArr	= new int[charArray.length*8];
+		//8 bits to represent 62 different characters
 		for(int i = 0; i < charArray.length; i++){
-			arr[i] = characters.indexOf(charArray[i]) + 1;
+			decimalArr[i] = characters.indexOf(charArray[i]) + 1;
+			int digit = decimalArr[i];
+			for(int j=7; j>=0; j--){
+				int powTwo = (int)Math.pow(2,j);
+				binaryArr[i*7+j] = digit/powTwo;
+				digit = digit%powTwo;
+			}
 		}
-		
-		return arr;
+		return binaryArr;
 	}
 	
 	int[] bitseqToDigitSeq(int[] bitseq, int k){

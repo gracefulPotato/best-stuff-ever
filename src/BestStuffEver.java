@@ -39,10 +39,16 @@ public class BestStuffEver {
 			}
 			//correct input
 			else{
-				bitseq = converter.stringToBitseq(UI);
+				int[] bitsequence = converter.stringToBitseq(UI);
 				System.out.print(UI + ": ");
-				for(int i = 0; i < bitseq.length; i++){
-					System.out.print(bitseq[i] + " ");
+				System.out.println("digit sequence:");
+                                for(int i = 0; i < converter.decimalArr.length; i++){
+                                        System.out.print(converter.decimalArr[i] + " ");
+                                }
+                                System.out.println();
+				 System.out.println("binary sequence:");
+				for(int i = 0; i < bitsequence.length; i++){
+					System.out.print(bitsequence[i] + " ");
 				}
 				System.out.println();
 			}

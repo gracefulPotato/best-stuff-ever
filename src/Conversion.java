@@ -8,19 +8,32 @@ public class Conversion {
 	int[] stringToBitseq(String s){
 		String characters = "0123456789abcdefghijklmnopqurstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		char[] charArray = s.toCharArray();
-		decimalArr = new int[charArray.length];
-		int[] binaryArr	= new int[charArray.length*8];
-		//8 bits to represent 62 different characters
+		int[] arr = new int[charArray.length];
+		int[] bitString = new int[96];
+		String[] strBit = new String[arr.length];
+		String bits = "";
+		
 		for(int i = 0; i < charArray.length; i++){
-			decimalArr[i] = characters.indexOf(charArray[i]) + 1;
-			int digit = decimalArr[i];
-			for(int j=7; j>=0; j--){
-				int powTwo = (int)Math.pow(2,j);
-				binaryArr[i*7+j] = digit/powTwo;
-				digit = digit%powTwo;
-			}
+			arr[i] = characters.indexOf(charArray[i]) + 1;
+			strBit[i] = Integer.toString(arr[i], 2);
 		}
-		return binaryArr;
+
+		for(int i = 0; i < strBit.length; i++){
+			while(strBit[i].length() != 6){
+				strBit[i] = "0" + strBit[i];
+			}
+			bits = bits.concat(strBit[i]);
+		}
+		
+		while(bits.length() != 96){
+			bits = "0" + bits;
+		}
+		
+		for(int i = 0; i < bits.length(); i++){
+			bitString[i] = Integer.parseInt(String.valueOf(bits.charAt(i)));
+		}
+
+		return bitString;
 	}
 	
 	int[] bitseqToDigitSeq(int[] bitseq, int k){

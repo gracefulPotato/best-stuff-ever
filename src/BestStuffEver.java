@@ -9,27 +9,29 @@ import java.util.regex.Pattern;
 import java.io.*;
 
 public class BestStuffEver {
-	
+
 	public static void main(String args[])throws IOException{
 		//Scanner in = new Scanner(new File(args[0]));
 
-		Scanner in = new Scanner(new File("../data/test.txt"));
-		//Scanner in = new Scanner(new File("input/test.txt"));
+		Scanner in = new Scanner(new File("data/test.txt"));
+		//Scanner in = new Scanner(new File("../data/test.txt"));
 		Conversion converter = new Conversion();
-		UIMS hashTable = new UIMS;
+		UIMS hashtable = new UIMS();
+
 		//for finding if string contains special character (stackOverflow.com)
 		Pattern regex = Pattern.compile("[^A-Za-z0-9]");
-	    	Matcher match;
-	    
+		Matcher match;
+
 		int[] bitseq;
+		int[] salt = hashtable.generateSalt();
 		SLItemList testList = new SLItemList();
-		
+
 		while(in.hasNextLine()){
 			String UI = in.nextLine();
-			
+
 			match = regex.matcher(UI);
 			boolean specialChar = match.find();
-			
+
 			//incorrect input
 			if(UI.length() > 16){
 				System.out.println(UI + " has more than 16 characters");
@@ -39,6 +41,13 @@ public class BestStuffEver {
 			}
 			//correct input
 			else{
+				bitseq = converter.stringToBitseq(UI);
+				/*******************/
+				//System.out.print(UI + ": " + hash + "\n");
+				/*******************/
+				
+			}
+		
 				int[] bitsequence = converter.stringToBitseq(UI);
 				System.out.print(UI + ": ");
 				System.out.println("digit sequence:");
@@ -51,15 +60,10 @@ public class BestStuffEver {
 					System.out.print(bitsequence[i] + " ");
 				}
 				System.out.println();
-			}
+			
 		
-			if(hashtable.idIsValid(UI)==false){
-				System.out.println(UI+" is invalid "
-						+ "(contains non-alphanumeric characters).");
-				continue;
-			}
 			if(hashtable.isAvailable(UI)){
-				testList.pushFront(UI,1);
+				testList.pushFront(UI);
 				//UIMS.add(tmpID);
 			}
 		}
@@ -67,24 +71,20 @@ public class BestStuffEver {
 		testList.debugPrint();
 		TestDrivers.generateRandomShit();
 		int[]bits = {1,0,1,1,1,1,1,0,0};
-		//bits[0] = 0;
-		//bits[1] = 1;
-		//bits[
 		int[]ans = converter.bitseqToDigitSeq(bits,3);
 		for(int i=0; i<ans.length; i++){
 			System.out.println(bits[i*2]+" "+bits[i*2+1]);
-			//System.out.println(bits[i*2+1]);
 			System.out.println(ans[i]);
 		}
 	}
 
-	
+
 	public void majikaruBanana(){
 		System.out.println("MAJIKARU BANANA!!!\nMAJIKARU BANANA!!!");
 		for(int i = 0; i<10; i++){
 			if(i%2==0) System.out.println("BANANA TO ITTARA KIIRO");
 			else System.out.println("KIIRO TO ITTARA BANANA");
-			
+
 		}
 		System.out.print("");
 	}

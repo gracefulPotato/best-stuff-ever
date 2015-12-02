@@ -16,7 +16,7 @@ public class BestStuffEver {
 		Scanner in = new Scanner(new File("../data/test.txt"));
 		//Scanner in = new Scanner(new File("input/test.txt"));
 		Conversion converter = new Conversion();
-		
+		UIMS hashTable = new UIMS;
 		//for finding if string contains special character (stackOverflow.com)
 		Pattern regex = Pattern.compile("[^A-Za-z0-9]");
 	    	Matcher match;
@@ -53,12 +53,12 @@ public class BestStuffEver {
 				System.out.println();
 			}
 		
-			if(UIMS.idIsValid(UI)==false){
+			if(hashtable.idIsValid(UI)==false){
 				System.out.println(UI+" is invalid "
 						+ "(contains non-alphanumeric characters).");
 				continue;
 			}
-			if(UIMS.isAvailable(UI)){
+			if(hashtable.isAvailable(UI)){
 				testList.pushFront(UI,1);
 				//UIMS.add(tmpID);
 			}

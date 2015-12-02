@@ -7,10 +7,11 @@ public class UIMS {
 			//of user ids issued we will use it to compute the load factor
 			//of the hash table
 
-			SLItemList[] userT = new SLItemList[10]; 
+                        int m = 1021;
+
+
+			SLItemList[] userT = new SLItemList[m]; 
 			//should have m elements
-			
-			int m = 10;
 			//size of currently allocated hash table
 			//a prime number or power of 2, depending on hash
 			//family used
@@ -18,14 +19,14 @@ public class UIMS {
 			
 			//userID: proposed user id
 			//returns true if the userID is available, false otherwise
-			static boolean isAvailable(String userID){
+			boolean isAvailable(String userID){
 				//check if userID is valid String
 				assert(idIsValid(userID));
 				//check if userID already exists
 				return true;
 			}
 			
-			static boolean idIsValid(String userID){
+			boolean idIsValid(String userID){
 				for(int i=0; i<userID.length(); i++){
 					char uidChar = userID.charAt(i);
 					if(charIsAlphaNum(uidChar)==false){
@@ -35,7 +36,7 @@ public class UIMS {
 				return true;
 			}
 			
-			static boolean charIsAlphaNum(char chr){
+			boolean charIsAlphaNum(char chr){
 				if(chr<48){					//below '0'
 					return false; 
 				}
@@ -56,10 +57,12 @@ public class UIMS {
 			//precondition: userID is available and customerID = cid
 			//postcondition: userID is in hash table userT associated with cid
 			//and customerID = cid + 1
-			static void add(String userID){
+			void add(String userID){
 				if(isAvailable(userID)==false){
 					return;
 				}
+				int index = hash(userID);
+				userT[index].pushFront(userID);
 				customerID++;
 			}
 			
@@ -73,7 +76,8 @@ public class UIMS {
 			//a value between 0 and m-1
 			//define using helper functions
 			int hash(String userID){
-
+				int input = bitseqToDigitSeq(stringToBitseq(userID),m);
+				
 				return 0;
 			}
 			

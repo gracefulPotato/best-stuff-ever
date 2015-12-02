@@ -43,27 +43,18 @@ public class BestStuffEver {
 			//correct input
 			else{
 				bitseq = converter.stringToBitseq(UI);
+				if(hashtable.isAvailable(UI)){
+					hashtable.add(UI);
+					//UIMS.add(tmpID);
+				}
 				/*******************/
 				//System.out.print(UI + ": " + hash + "\n");
 				/*******************/
-				
-                        if(hashtable.isAvailable(UI)){
-				hashtable.add(UI);
-                                //testList.pushFront(UI);
-                                //UIMS.add(tmpID);
-                        }
-
 			}
 		}
 		in.close();
-		testList.debugPrint();
-		TestDrivers.generateRandomShit();
-		int[]bits = {1,0,1,1,1,1,1,0,0};
-		int[]ans = converter.bitseqToDigitSeq(bits,3);
-		for(int i=0; i<ans.length; i++){
-			System.out.println(bits[i*2]+" "+bits[i*2+1]);
-			System.out.println(ans[i]);
-		}
+		//testList.debugPrint();
+		//TestDrivers.generateRandomShit();
 	}
 
 

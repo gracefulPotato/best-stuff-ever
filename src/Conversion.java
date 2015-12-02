@@ -1,4 +1,3 @@
-import java.util.*;
 public class Conversion {
 	//returns an array of 0s and 1s constructed by
 	//representing each char in s by its assigned
@@ -32,7 +31,6 @@ public class Conversion {
 		for(int i = 0; i < bits.length(); i++){
 			bitString[i] = Integer.parseInt(String.valueOf(bits.charAt(i)));
 		}
-
 		return bitString;
 	}
 	
@@ -79,14 +77,5 @@ public class Conversion {
 			//numDigits++;
 		}
 		return digitseq;
-	}
-	
-	long bitSeqToBigNum(){
-		return 0;
-	}
-	
-	int[] numToBitSeq(int n){
-		int[] arr = new int[1];
-		return arr;
 	}
 }

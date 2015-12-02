@@ -1,14 +1,11 @@
 import java.util.*;
 public class UIMS {
 	//the user id management system
-			static int customerID = 0;
-			//increased by 1 each time a user id is added
-			//since the value of customerID is always equal to the number
-			//of user ids issued we will use it to compute the load factor
-			//of the hash table
+			//number of stuff in table
+			int customerID = 0;
 
-                        int m = 1021;
-
+			//table size
+            int m = 1021;
 
 			SLItemList[] userT = new SLItemList[m]; 
 			//should have m elements
@@ -83,9 +80,9 @@ public class UIMS {
 				return salt;
 			}
 			
-			double load(int[] arr, String customerID){
+			//returns true if table needs to be reallocated (load > 0.75)
+			boolean load(int tableSize, int stuffInTable){
 				double loadFactor = 0.75;
-				//double load = 
-				return loadFactor;
+				return ((double)(stuffInTable/tableSize) >= loadFactor);
 			}
 }

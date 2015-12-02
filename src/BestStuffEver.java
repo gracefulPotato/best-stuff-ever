@@ -13,8 +13,8 @@ public class BestStuffEver {
 	public static void main(String args[])throws IOException{
 		//Scanner in = new Scanner(new File(args[0]));
 
-		Scanner in = new Scanner(new File("data/test.txt"));
-		//Scanner in = new Scanner(new File("../data/test.txt"));
+		//Scanner in = new Scanner(new File("data/test.txt"));
+		Scanner in = new Scanner(new File("../data/test.txt"));
 		Conversion converter = new Conversion();
 		UIMS hashtable = new UIMS();
 
@@ -23,7 +23,8 @@ public class BestStuffEver {
 		Matcher match;
 
 		int[] bitseq;
-		int[] salt = hashtable.generateSalt();
+		hashtable.salt = hashtable.generateSalt();
+		System.out.println("salt.length: "+hashtable.salt.length);
 		SLItemList testList = new SLItemList();
 
 		while(in.hasNextLine()){
@@ -46,25 +47,12 @@ public class BestStuffEver {
 				//System.out.print(UI + ": " + hash + "\n");
 				/*******************/
 				
-			}
-		
-				int[] bitsequence = converter.stringToBitseq(UI);
-				System.out.print(UI + ": ");
-				System.out.println("digit sequence:");
-                                for(int i = 0; i < converter.decimalArr.length; i++){
-                                        System.out.print(converter.decimalArr[i] + " ");
-                                }
-                                System.out.println();
-				 System.out.println("binary sequence:");
-				for(int i = 0; i < bitsequence.length; i++){
-					System.out.print(bitsequence[i] + " ");
-				}
-				System.out.println();
-			
-		
-			if(hashtable.isAvailable(UI)){
-				testList.pushFront(UI);
-				//UIMS.add(tmpID);
+                        if(hashtable.isAvailable(UI)){
+				hashtable.add(UI);
+                                //testList.pushFront(UI);
+                                //UIMS.add(tmpID);
+                        }
+
 			}
 		}
 		in.close();

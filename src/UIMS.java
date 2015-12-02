@@ -18,10 +18,15 @@ public class UIMS {
 			//family used
 			//initially 2 if hash table dynamically growing
 			
-			int[] salt = new int[16];
-			
-			public UIMS(){}
-			
+			public UIMS(){
+				for(int i=0; i<m; i++){
+					userT[i] = new SLItemList();
+				}
+			}
+			int base = (int)(Math.log(m)/Math.log(2));
+			int saltLen = (16*6)/base;
+			int[] salt = new int[saltLen];
+
 			//userID: proposed user id
 			//returns true if the userID is available, false otherwise
 			
@@ -37,6 +42,7 @@ public class UIMS {
 					return;
 				}
 				int index = hash(userID);
+				System.out.println("index: "+index);
 				userT[index].pushFront(userID);
 				customerID++;
 			}
@@ -52,14 +58,26 @@ public class UIMS {
 			//define using helper functions
 			int hash(String userID){
 				Conversion converter = new Conversion();
-				int[] input = converter.bitseqToDigitSeq(converter.stringToBitseq(userID),m);
-				
-				return 0;
+				int base = (int)(Math.log(m)/Math.log(2));
+				System.out.println("base: "+base);
+				int[] input = converter.bitseqToDigitSeq(converter.stringToBitseq(userID),base);
+				int sum = 0;
+				System.out.println("salt.length: "+salt.length+" input.length: "+input.length);
+				System.out.println(input[input.length-1]);
+				for(int i=0; i<input.length;i++){
+					System.out.println("i: "+i);
+					sum = sum + input[i]*salt[i];
+				}
+				int key = sum%m;
+				System.out.println("key: "+key);
+				return key;
 			}
 			
 			int[] generateSalt(){
-				for(int i = 0; i < salt.length;i++){
-					salt[i] = (int)(Math.random()*65);
+				base = (int)(Math.log(m)/Math.log(2));
+				int saltLen = (16*6)/base;
+				for(int i = 0; i < saltLen;i++){
+					salt[i] = (int)(Math.random()*m);
 					//System.out.println(salt[i]);
 				}
 				return salt;

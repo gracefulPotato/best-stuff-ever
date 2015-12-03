@@ -17,7 +17,7 @@ public class SLItemList {
 		while(!currentItem.uid.equals("")){
 		if(uid.equals(currentItem.uid))
 			return currentItem;
-		currentItem = currentItem.next;
+			currentItem = currentItem.next;
 		}
 		return header;
 	}

@@ -40,24 +40,13 @@ public class Conversion {
 		//store into array
 		String chunk = "";
 		int digitLen = bitseq.length/k;
-		System.out.println("digitlen w/out ceiling: "+digitLen);
-		//if(bitseq.length%k > 0)		//ceiling
-		//	digitLen++;
-		System.out.println("digitlen: "+digitLen);
 		int[] digitseq = new int[digitLen];
 		int numDigits = 0;
 		int digit = 0;
-		System.out.println("bitseq.length"+bitseq.length);
 		int looptimes = (bitseq.length+k)-(bitseq.length%k);
-		System.out.println("looptimes: "+looptimes);
 		for(int i = 0; i<looptimes; i++){
-		System.out.println("i: "+i);
 			if(i%(k+1) == 0 && i>0){
-				//int chunkInt = Integer.parseInt(chunk);
-				System.out.println(chunk);
-				System.out.println("digitseq["+(i/k-1)+"]");
 				digitseq[i/k-1] = Integer.valueOf(chunk,2);
-				System.out.println(digitseq[i/k-1]);
 				chunk = "";
 			}else{
 				if(i<bitseq.length)
@@ -65,16 +54,6 @@ public class Conversion {
 				else
 				chunk = chunk+"0";
 			}
-			//digit = 0;
-			//for(int j=(k-1); j>=0; j--){
-			//	//System.out.println(Math.pow(2,j));
-			//	//System.out.println(bitseq[i+j]);
-			//	System.out.println("i: "+i+", j: "+j);
-			//	digit+=(Math.pow(2,j)*bitseq[i+(k-1-j)]);
-			//	//chunk[j] = bitseq[i+j];
-			//}
-			//digitseq[numDigits] = digit;
-			//numDigits++;
 		}
 		return digitseq;
 	}

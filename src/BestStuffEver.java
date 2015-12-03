@@ -11,10 +11,12 @@ import java.io.*;
 public class BestStuffEver {
 
 	public static void main(String args[])throws IOException{
-		//Scanner in = new Scanner(new File(args[0]));
 
+		//Scanner in = new Scanner(new File(args[0]));
 		//Scanner in = new Scanner(new File("data/test.txt"));
-		Scanner in = new Scanner(new File("../data/test.txt"));
+		//Scanner in = new Scanner(new File("../data/test.txt"));
+		Scanner in = new Scanner(new File("../INPUT"));
+
 		Conversion converter = new Conversion();
 		UIMS hashtable = new UIMS();
 
@@ -42,7 +44,7 @@ public class BestStuffEver {
 			}
 			//correct input
 			else{
-				bitseq = converter.stringToBitseq(UI);
+				//bitseq = converter.stringToBitseq(UI);
 				if(hashtable.isAvailable(UI)){
 					hashtable.add(UI);
 					//UIMS.add(tmpID);
@@ -53,8 +55,7 @@ public class BestStuffEver {
 			}
 		}
 		in.close();
-		//testList.debugPrint();
-		//TestDrivers.generateRandomShit();
+		hashtable.printCurrentState();
 	}
 
 

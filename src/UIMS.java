@@ -5,7 +5,7 @@ public class UIMS {
 			int customerID = 0;
 
 			//table size
-            int m = 1021;
+            		int m = 1021;
 
 			SLItemList[] userT = new SLItemList[m]; 
 			//should have m elements
@@ -39,8 +39,8 @@ public class UIMS {
 					return;
 				}
 				int index = hash(userID);
-				System.out.println("index: "+index);
 				userT[index].pushFront(userID);
+				System.out.println(userT[index].header.getUid());
 				customerID++;
 			}
 			
@@ -49,6 +49,22 @@ public class UIMS {
 			int lookupCustomer(String userID){
 				return 0;
 			}
+
+			void printCurrentState(){
+				SItem walker;
+				for(int i=0; i<userT.length; i++){
+					SItem head = userT[i].header;
+					if(head.next != head){
+						walker = head.next;
+						System.out.print(i+" - "+walker.getUid());
+						while(walker.next!=head){
+							System.out.print(", "+walker.getUid());
+							walker = walker.next;
+						}
+					System.out.println();
+					}
+				}
+			}
 			
 			//returns the hash value of the user id userID,
 			//a value between 0 and m-1
@@ -56,13 +72,9 @@ public class UIMS {
 			int hash(String userID){
 				Conversion converter = new Conversion();
 				int base = (int)(Math.log(m)/Math.log(2));
-				System.out.println("base: "+base);
 				int[] input = converter.bitseqToDigitSeq(converter.stringToBitseq(userID),base);
 				int sum = 0;
-				System.out.println("salt.length: "+salt.length+" input.length: "+input.length);
-				System.out.println(input[input.length-1]);
 				for(int i=0; i<input.length;i++){
-					System.out.println("i: "+i);
 					sum = sum + input[i]*salt[i];
 				}
 				int key = sum%m;

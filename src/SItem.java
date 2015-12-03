@@ -4,4 +4,7 @@ public class SItem {
 	public SItem(String uid){
 		this.uid = uid;
 	}
+	public String getUid(){
+		return this.uid;
+	}
 }

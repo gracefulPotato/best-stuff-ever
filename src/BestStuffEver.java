@@ -44,7 +44,6 @@ public class BestStuffEver {
 			}
 			//correct input
 			else{
-				//bitseq = converter.stringToBitseq(UI);
 				if(hashtable.isAvailable(UI)){
 					hashtable.add(UI);
 					//UIMS.add(tmpID);

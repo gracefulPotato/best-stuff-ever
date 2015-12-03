@@ -27,7 +27,11 @@ public class UIMS {
 			//userID: proposed user id
 			//returns true if the userID is available, false otherwise
 			
-			static boolean isAvailable(String userID){
+			boolean isAvailable(String userID){
+				for(int i=0; i<userT.length; i++){
+					if(!userT[i].find(userID).uid.equals(""))
+						return false;
+				}
 				return true;
 			}
 			
@@ -40,7 +44,7 @@ public class UIMS {
 				}
 				int index = hash(userID);
 				userT[index].pushFront(userID);
-				System.out.println(userT[index].header.getUid());
+				System.out.println(userT[index].header.next.getUid());
 				customerID++;
 			}
 			
@@ -55,13 +59,15 @@ public class UIMS {
 				for(int i=0; i<userT.length; i++){
 					SItem head = userT[i].header;
 					if(head.next != head){
+						String listStr = "";
 						walker = head.next;
-						System.out.print(i+" - "+walker.getUid());
-						while(walker.next!=head){
-							System.out.print(", "+walker.getUid());
+						//listStr = walker.getUid();
+						do{
+							listStr=walker.getUid()+", "+listStr;
 							walker = walker.next;
-						}
-					System.out.println();
+						}while(walker.next.next!=head);
+						listStr = i+" - "+listStr;
+						System.out.println(listStr);
 					}
 				}
 			}

@@ -15,19 +15,15 @@ public class BestStuffEver {
 		//Scanner in = new Scanner(new File(args[0]));
 		//Scanner in = new Scanner(new File("data/test.txt"));
 		//Scanner in = new Scanner(new File("../data/test.txt"));
-		Scanner in = new Scanner(new File("../INPUT"));
+		Scanner in = new Scanner(new File("data/INPUT"));
 
-		Conversion converter = new Conversion();
 		UIMS hashtable = new UIMS();
 
 		//for finding if string contains special character (stackOverflow.com)
 		Pattern regex = Pattern.compile("[^A-Za-z0-9]");
 		Matcher match;
 
-		int[] bitseq;
 		hashtable.salt = hashtable.generateSalt();
-		System.out.println("salt.length: "+hashtable.salt.length);
-		SLItemList testList = new SLItemList();
 
 		while(in.hasNextLine()){
 			String UI = in.nextLine();
@@ -44,28 +40,16 @@ public class BestStuffEver {
 			}
 			//correct input
 			else{
-				//bitseq = converter.stringToBitseq(UI);
 				if(hashtable.isAvailable(UI)){
 					hashtable.add(UI);
 					//UIMS.add(tmpID);
+					if(hashtable.load(hashtable.m, hashtable.customerID)){
+						hashtable.userT = hashtable.rehash(hashtable.userT);
+					}
 				}
-				/*******************/
-				//System.out.print(UI + ": " + hash + "\n");
-				/*******************/
 			}
 		}
 		in.close();
 		hashtable.printCurrentState();
-	}
-
-
-	public void majikaruBanana(){
-		System.out.println("MAJIKARU BANANA!!!\nMAJIKARU BANANA!!!");
-		for(int i = 0; i<10; i++){
-			if(i%2==0) System.out.println("BANANA TO ITTARA KIIRO");
-			else System.out.println("KIIRO TO ITTARA BANANA");
-
-		}
-		System.out.print("");
 	}
 }

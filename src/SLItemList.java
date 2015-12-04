@@ -1,4 +1,9 @@
-
+//Jolina Lam, Grace O'Hair-Sherman
+//CMPS 101 12/4/2015
+//
+//SLItemList
+//Singly linked item list
+//element of userT array
 public class SLItemList {
 	SItem header;
 	SLItemList(){

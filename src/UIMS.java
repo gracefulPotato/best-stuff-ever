@@ -1,3 +1,8 @@
+//Jolina Lam, Grace O'Hair-Sherman
+//CMPS 101 12/4/2015
+//
+//UIMS
+//The user ID management system
 public class UIMS {
 	//the user id management system
 	//number of stuff in table
@@ -47,7 +52,6 @@ public class UIMS {
 			}
 			int index = hash(userID);
 			userT[index].pushFront(userID);
-			System.out.println(userT[index].header.next.getUid());
 			customerID++;
 		}
 			
@@ -64,9 +68,11 @@ public class UIMS {
 			if(head.next != head){
 				String listStr = "";
 				walker = head.next;
-				//listStr = walker.getUid();
 				do{
-					listStr=walker.getUid()+", "+listStr;
+					if(listStr.equals("") || walker.getUid().equals(""))
+						listStr = walker.getUid()+listStr;
+					else
+						listStr=walker.getUid()+", "+listStr;
 					walker = walker.next;
 				}while(walker.next.next!=head);
 				listStr = i+" - "+listStr;
@@ -87,7 +93,6 @@ public class UIMS {
 			sum = sum + input[i]*salt[i];
 		}
 		int key = sum%m;
-		System.out.println("key: "+key);
 		return key;
 	}
 
@@ -96,7 +101,6 @@ public class UIMS {
 		int saltLen = (16*6)/base;
 		for(int i = 0; i < saltLen;i++){
 			salt[i] = (int)(Math.random()*m);
-			//System.out.println(salt[i]);
 		}
 		return salt;
 	}
@@ -108,8 +112,7 @@ public class UIMS {
 	}
 
 	SLItemList[] rehash(SLItemList[] oldHashTable){
-		m = m*2 + 1;					
-		System.out.println("m: "+m);
+		m = m*2 + 1;
 		SLItemList[] newTable = new SLItemList[m];
 		for(int i=0; i<m; i++){
 			newTable[i] = new SLItemList();
@@ -121,9 +124,7 @@ public class UIMS {
 				SItem pointer = oldHashTable[i].header.next;
 				while(pointer != oldHashTable[i].header){
 					int index = hash(pointer.uid);
-					//System.out.println("pointer.uid: "+pointer.uid);
 					newTable[index].pushFront(pointer.uid);
-					System.out.println(newTable[index].header.getUid());
 					pointer = pointer.next;
 				}
 			}

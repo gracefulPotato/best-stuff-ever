@@ -1,12 +1,14 @@
-
+//Jolina Lam, Grace O'Hair-Sherman
+//CMPS 101 12/4/2015
+//
+//TestDrivers
 //contains helper methods for generating test data sets
 //and running UIMs on the test data sets
-//you will want to be able to (randomly) generate lists
-//of user ids, for instance
-//"more on this soon" yeah, right.
+//
+//**NOTE** our main() function is in BestStuffEver.java!!
 import java.util.*;
 public class TestDrivers {
-	static String generateRandomShit(){
+	static String generateRandomUid(){
 		String rtn = "";
 		Random random = new Random();
 		String alphabet = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";

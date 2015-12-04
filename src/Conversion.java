@@ -1,3 +1,8 @@
+//Jolina Lam, Grace O'Hair-Sherman
+//CMPS 101 12/4/2015
+//
+//Conversion
+//Helper class for hash function
 public class Conversion {
 	//returns an array of 0s and 1s constructed by
 	//representing each char in s by its assigned

@@ -17,16 +17,17 @@ public class BestStuffEver {
 		UIMS hashtable = new UIMS();
                 hashtable.salt = hashtable.generateSalt();
 
-                //Scanner in = new Scanner(new File("data/test.txt"));
-                Scanner in = new Scanner(new File("../INPUT"));
+		Scanner in = new Scanner(new File("INPUT"));
 
 		while(in.hasNextLine()){
 			String UI = in.nextLine();
 
 			if(inputCorrect(UI)){
-				if(hashtable.isAvailable(UI)){
+				if(hashtable.isAvailable(UI)){	//check if User ID already exist in hashtable
 					hashtable.add(UI);
 				}
+
+				//check if hashtable needs doubling and reallocation
                                 if(hashtable.load(hashtable.m, hashtable.customerID)){
                                         hashtable.userT = hashtable.rehash(hashtable.userT);
                                 }
@@ -34,7 +35,7 @@ public class BestStuffEver {
 			}
 		}
 		in.close();
-		hashtable.printCurrentState();
+		hashtable.printCurrentState(); //write state of hashtable to a file
 	}
 
 	//inputCorrect

@@ -8,6 +8,9 @@
 //**NOTE** our main() function is in BestStuffEver.java!!
 import java.util.*;
 public class TestDrivers {
+
+	//generates random correct output of random length
+	//used for debugging purposes (NOT CALLED IN MAIN())
 	static String generateRandomUid(){
 		String rtn = "";
 		Random random = new Random();

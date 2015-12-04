@@ -11,12 +11,14 @@ public class SLItemList {
 		header.next = header;
 	}
 	
+	//adds element to the front of the list and links with other elements (if they exist)
 	void pushFront(String uid){
 		SItem newItem = new SItem(uid);
 		newItem.next = header.next;
 		header.next = newItem;
 	}
 	
+	//returns element if it exists or dummy header if not
 	SItem find(String uid){
 		SItem currentItem = header.next;
 		while(!currentItem.uid.equals("")){
@@ -26,6 +28,8 @@ public class SLItemList {
 		}
 		return header;
 	}
+
+	//used for debugging linked list (NOT CALLED IN MAIN())
 	void debugPrint(){
 		SItem currentItem = header.next;
 		while(!currentItem.uid.equals("")){

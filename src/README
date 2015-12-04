@@ -1,0 +1,39 @@
+//Jolina Lam, Grace O'Hair-Sherman
+//CMPS 101 12/3/15
+//
+//README
+
+Files:
+
+BestStuffEver.java
+UIMS.java
+Conversion.java
+SLItemList.java
+SItem.java
+TestDrivers.java
+Makefile
+INPUT
+README
+
+Sources:
+StackOverflow
+
+Purpose:
+Creates a hashtable, parses input file and hashes contents
+using a multiplicative hashing function.
+Resolves conflicts using hashing by chaining, implemented
+using singly-linked lists.
+Hashtable is dynamically growing (doubles when 3/4 full).
+
+Notes:
+1. Our jarfile must be run using the command
+	java -jar BestStuffEver
+
+2.Our main() function is located in the BestStuffEver class,
+not the TestDrivers class.
+
+3. Since we chose to only hash the userID String rather than
+both the numeric customer ID and the userID String (we
+asked the professor about this and he said it was fine),
+we are not implementing the findCustomer() method of the
+UIMS class.
